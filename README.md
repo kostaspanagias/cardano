@@ -1,5 +1,5 @@
 # About
-A repository of useful scripts for the cardano community. Each script is a subfolder in folder `code`.
+A repository of useful Python scripts for the cardano community. Each script is a subfolder in folder `code`.
 
 *This is a work in progress...*
 
