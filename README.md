@@ -14,3 +14,11 @@ This python script fetches all the holders of a particular native token in carda
 * **Pandas**. How to install: `pip install pandas`
 * **Openpyxl**. How to install: `pip install openpyxl`
 * **Dotenv**. How to install: `pip install python-dotenv`
+
+---
+
+### stake_addresses_v2.py
+This script will read a csv file with a list of stake keys and get all the addresses of each stake key exported into an Excel file for further analysis. A sample file **stake.csv** is included in the repository for you to use as template.
+#### Dependencies
+* **Pandas**. How to install: `pip install pandas`
+* **Dotenv**. How to install: `pip install python-dotenv`
