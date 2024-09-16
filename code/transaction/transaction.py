@@ -59,6 +59,52 @@ def fetch_transaction_details(tx_id):
         else:
             return 'N/A'
 
+    # Fetch token metadata to get name and decimals
+    def fetch_token_metadata(asset_id):
+        url = f"{BASE_URL}/assets/{asset_id}"
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            metadata = response.json()
+
+            # Safely access on-chain metadata and other fields
+            token_name = metadata.get('onchain_metadata', {}).get('name', 'N/A') if metadata.get('onchain_metadata') else 'N/A'
+            fingerprint = metadata.get('fingerprint', asset_id)
+            
+            # Use the get_token_decimals function to get the decimals
+            decimals = get_token_decimals(asset_id)
+
+            return token_name, decimals, fingerprint
+        else:
+            return 'N/A', 0, asset_id
+
+    # Get the correct number of decimals for a token
+    def get_token_decimals(token_unit):
+        headers = {
+            'project_id': BLOCKFROST_API_KEY
+        }
+
+        # Blockfrost API endpoint to get token metadata
+        metadata_url = f'{BASE_URL}/assets/{token_unit}'
+        response = requests.get(metadata_url, headers=headers)
+
+        if response.status_code == 200:
+            metadata = response.json()
+
+            # Access the nested dictionary 'metadata' if it exists
+            inner_metadata = metadata.get('metadata', {})
+
+            if inner_metadata is not None:
+                # Fetch the 'decimals' value from the nested dictionary
+                decimals = inner_metadata.get('decimals', 0)  # Return 0 if 'decimals' is not found
+                return int(decimals) if decimals is not None else 0
+            else:
+                # If 'metadata' is None, print a message and return 0
+                print("No metadata found; defaulting decimals to 0.")
+                return 0
+        else:
+            print(f"Error fetching token metadata: {response.status_code}")
+            return 0
+
     # Prepare inputs and outputs details
     inputs_details = []
     outputs_details = []
@@ -90,18 +136,23 @@ def fetch_transaction_details(tx_id):
 
         # Process tokens for each output
         for amount in output['amount'][1:]:  # Skip the first ADA amount
-            token_name_url = f"{BASE_URL}/assets/{amount['unit']}"
-            token_response = requests.get(token_name_url, headers=headers)
-            token_name = token_response.json().get('fingerprint', 'N/A') if token_response.status_code == 200 else 'N/A'
+            token_unit = amount['unit']
+            token_name, decimals, fingerprint = fetch_token_metadata(token_unit)
             
+            # Format token name and adjust quantity correctly
+            formatted_token_name = f"{token_name} ({token_unit[-8:]})" if token_name != 'N/A' else token_name
+            
+            # Correctly adjust the quantity by dividing by the token's decimals
+            adjusted_quantity = int(amount['quantity']) / (10 ** decimals)
+
             tokens_moved.append({
                 'Input Address': sender_wallet,
                 'Input Stake Key': sender_stake_key,
                 'Output Address': receiver_wallet,
                 'Output Stake Key': receiver_stake_key,
-                'Token': amount['unit'],
-                'Token Name': token_name,
-                'Quantity': int(amount['quantity'])
+                'Token': fingerprint,
+                'Token Name': formatted_token_name,
+                'Quantity': adjusted_quantity
             })
 
     # Get the transaction fee
