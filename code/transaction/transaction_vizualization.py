@@ -18,7 +18,7 @@ Usage:
 1. Install required libraries: `pip install dash dash-cytoscape requests python-dotenv`.
 2. Add your Blockfrost API key in a `.env` file (BLOCKFROST_API_KEY=<your_api_key>).
 3. Enter a valid Cardano transaction ID in the `tx_id` variable.
-4. Run the script: `python your_script.py`.
+4. Run the script
 5. Open the browser at `http://127.0.0.1:8050/` to interact with the graph.
 
 @author: kostas_panagias (https://x.com/kostas_panagias)
