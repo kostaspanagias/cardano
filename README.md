@@ -30,6 +30,8 @@ This script will read a csv file with a list of stake keys and get all the addre
 * **Pandas**. How to install: `pip install pandas`
 * **Dotenv**. How to install: `pip install python-dotenv`
 
+---
+
 ### single_transactions (file:single_transaction.py)
 This script asks for a transaction id and it outputs and excel with inputs & outputs (UTXOs) - SheetName: "ADA_Transcations" and native tokens that moved wallets - SheetName: "Token Transactions". The excel is saved with the transaction id as its name.
 #### Dependencies
