@@ -25,7 +25,7 @@ You can use popular Cardano Explorers (e.g. https://cexplorer.io/) to get the en
 
 ---
 
-### stake_addresses (file:[stake_addresses_v2.py](code/stake_addresses/stake_addresses.py))
+### stake_addresses (file: [stake_addresses_v2.py](code/stake_addresses/stake_addresses.py))
 This script will read a csv file with a list of stake keys and get all the addresses of each stake key exported into an Excel file for further analysis. A sample file **stake.csv** is included in the repository for you to use as template.
 #### Dependencies
 * **Pandas**. How to install: `pip install pandas`
@@ -34,7 +34,7 @@ This script will read a csv file with a list of stake keys and get all the addre
 
 ---
 
-### single_transactions (file:[single_transaction.py](code/transaction/single_transaction.py))
+### single_transactions (file: [single_transaction.py](code/transaction/single_transaction.py))
 This script asks for a transaction id and it outputs and excel with inputs & outputs (UTXOs) - SheetName: "ADA_Transcations" and native tokens that moved wallets - SheetName: "Token Transactions". The excel is saved with the transaction id as its name.
 #### Dependencies
 * **Pandas**. How to install: `pip install pandas`
