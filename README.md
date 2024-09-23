@@ -43,10 +43,13 @@ This script asks for a transaction id and it outputs and excel with inputs & out
 
 ---
 
-### transaction_vizualization (file: [transaction_vizualization.py](code/transaction/transaction_vizualization.py))
+### transaction_vizualization-v2 (file: [transaction_vizualization.py](code/transaction/transaction_vizualization-v2.py))
 This script visualizes the flow of assets in a Cardano transaction using Dash Cytoscape. It fetches transaction data (inputs, outputs, ADA amounts, and metadata) from the Blockfrost API and displays an interactive graph where each node represents a wallet or transaction.
 #### Dependencies
 * **Dotenv**. How to install: `pip install python-dotenv`
 * **requests**. How to install: `pip install requests`
 * **dash**. How to install: `pip install dash`
 * **dash-cytoscape**. How to install: `pip install dash-cytoscape`
+
+### Screenshot:</br>
+<img src="files/transaction_visualization.jpg" alt="Screenshot of transaction_vizualization-v2 output" style="width: 70%;" />
