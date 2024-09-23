@@ -125,16 +125,12 @@ def format_transaction_details(tx_data, block_data):
     # Extract 'size' from the top-level
     size = tx_data.get('size', 'N/A')
     
-    # Correctly access 'fee' instead of 'fees' and handle it as a string
-    fee_str = tx_data.get('fee', '0')
-    try:
-        fee = int(fee_str) / 1_000_000  # Convert Lovelace to ADA
-    except ValueError:
-        fee = 'N/A'
+    # Correctly access 'fees' and handle it
+    fee = int(tx_data.get('fees', 0)) / 1_000_000  # Convert Lovelace to ADA
     
     # Format 'block_time' if available
-    if block_data.get('block_time') or tx_data.get('block_time'):
-        timestamp = block_data.get('block_time', tx_data.get('block_time'))
+    if block_data.get('time') or tx_data.get('block_time'):
+        timestamp = block_data.get('time', tx_data.get('block_time'))
         try:
             block_time = datetime.fromtimestamp(timestamp).strftime('%Y.%m.%d - %H.%M.%S')
         except (OSError, OverflowError, ValueError):
@@ -142,7 +138,9 @@ def format_transaction_details(tx_data, block_data):
     else:
         block_time = 'N/A'
     
-    return f"Date: {block_time}\nEpoch: {epoch}, Slot: {slot}\nSize: {size} bytes, Fee: {fee} ADA"
+    return f"Date: {block_time}\nEpoch: {epoch}, Slot: {slot}\nSize: {size} bytes, Fee: {fee:.6f} ADA"
+
+
 
 # Create a Cytoscape graph layout with full addresses
 def create_cytoscape_elements(tx_id, inputs, outputs, tx_details):
@@ -193,7 +191,7 @@ def create_cytoscape_elements(tx_id, inputs, outputs, tx_details):
 app = dash.Dash(__name__)
 
 # Fetch and process transaction data
-tx_id = "847b4f3ad3285aaf77398d6374ff4a80d76fad71795fd1d3aee68604d5921c86"  # Replace with your transaction ID
+tx_id = "d3cbfa97ea181730257a544a1ea80353ec8fc746c20ab4de03613b2f94003326"  # Replace with your transaction ID
 utxos_data, tx_data, block_data = fetch_transaction_data(tx_id)
 
 if utxos_data and tx_data:
