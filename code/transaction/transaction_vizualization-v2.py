@@ -138,7 +138,7 @@ def format_transaction_details(tx_data, block_data):
     else:
         block_time = 'N/A'
     
-    return f"Date: {block_time}\nEpoch: {epoch}, Slot: {slot}\nSize: {size} bytes, Fee: {fee:.6f} ADA"
+    return f"Date: {block_time}\nEpoch: {epoch}, Slot: {slot}\nSize: {size} bytes\nFee: {fee:.6f} ADA"
 
 
 
