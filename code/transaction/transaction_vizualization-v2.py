@@ -24,6 +24,7 @@ Usage:
 @author: kostas_panagias (https://x.com/kostas_panagias)
 
 Creation Date: 2024.09.19
+Last update: 2024.09.23
 
 """
 
@@ -215,10 +216,11 @@ if utxos_data and tx_data:
                         'label': 'data(label)',
                         'text-wrap': 'wrap',
                         'width': 'label',
+                        'height':'label',
                         'font-size': '10px',
                         'text-valign': 'center',
                         'text-halign': 'center',
-                        'shape': 'ellipse'
+                        'shape': 'roundrectangle'
                     }
                 },
                 {
@@ -228,10 +230,11 @@ if utxos_data and tx_data:
                         'label': 'data(label)',
                         'text-wrap': 'wrap',
                         'width': 'label',
+                        'height':'label',
                         'font-size': '10px',
                         'text-valign': 'center',
                         'text-halign': 'center',
-                        'shape': 'ellipse'
+                        'shape': 'roundrectangle'
                     }
                 },
                 {
@@ -241,10 +244,11 @@ if utxos_data and tx_data:
                         'label': 'data(label)',
                         'text-wrap': 'wrap',
                         'width': 'label',
+                        'height':'label',
                         'font-size': '10px',
                         'text-valign': 'center',
                         'text-halign': 'center',
-                        'shape': 'ellipse'
+                        'shape': 'roundrectangle'
                     }
                 },
                 {
