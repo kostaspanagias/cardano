@@ -12,7 +12,7 @@ Get your API Key at: https://blockfrost.io/ (free tier available)
 
 # List of Scripts
 
-### token_holders (file: [token_holders_v4.py](code/token_holders/token_holders.py))
+### token_holders V.4 (file: [token_holders.py](code/token_holders/token_holders.py))
 This python script fetches all the holders of a particular native token in cardano blockchain and saves this info to a local excel file. You need to have the token **Encoded Name** in order to run it.
 
 You can use popular Cardano Explorers (e.g. https://cexplorer.io/) to get the encoded name of the token you are interested in and remove the dot [.] </br>For example ticker: *IAG* is: *5d16cc1a177b5d9ba9cfa9793b07e60f1fb70fea1f8aef064415d114494147*, etc.
