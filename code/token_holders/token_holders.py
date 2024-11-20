@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 
 info = """
@@ -9,6 +8,8 @@ and save it to a local excel file (for further analysis)
 
 The script utilizes the BLOCKFROST API
 (get yours at https://blockfrost.io/)
+
+You need to feed the token "encoded name" (Cexplorer.io)
 
 @author: kostas_panagias (https://x.com/kostas_panagias)
 
@@ -125,12 +126,6 @@ def get_token_holders(token_unit, decimals, delay=1):
     # Now apply rounding to x decimal places
     df['Adjusted Quantity'] = df['Adjusted Quantity'].round(decimals)
 
-    # Calculate the total sum of the 'Adjusted Quantity' column
-    total_quantity = df['Adjusted Quantity'].sum()
-
-    # Add a new column 'Holder %' to the DataFrame
-    df['Holder %'] = (df['Adjusted Quantity'] / total_quantity) * 100
-
     # Keep only the 'Adjusted Quantity' column
     df.drop(columns=['Quantity'], inplace=True)
     df.rename(columns={'Adjusted Quantity': 'Quantity'}, inplace=True)
@@ -142,10 +137,13 @@ def get_token_holders(token_unit, decimals, delay=1):
 if __name__ == "__main__":
     # Replace with your token unit (unique identifier of the token) & ticker
     #token_list = ['f3fc8638cb9b0016c979cb5543d74264e798b59dce5a66e2c49b008847494741534e454b','Gigasnek']
-    token_list = ['5d16cc1a177b5d9ba9cfa9793b07e60f1fb70fea1f8aef064415d114494147','IAG']
+    #token_list = ['5d16cc1a177b5d9ba9cfa9793b07e60f1fb70fea1f8aef064415d114494147','IAG']
     #token_list = ['f43a62fdc3965df486de8a0d32fe800963589c41b38946602a0dc53541474958','agix']
     #token_list = ['141eea77e407aa35eec384dd6d863ca44aa338273222403c8f5549d9446f6e67','dong']
     #token_list = ['815418a1b078a259e678ecccc9d7eac7648d10b88f6f75ce2db8a25a4672616374696f6e2045737461746520546f6b656e','FET']
+    #token_list = ['676fe95d29c1fa198f86c862def5bf7a487c8abf04c3b0b53bdd1bf3','GYROS']
+    token_list = ['27526d00b52e27a0cdbf3558dc96a5e802e68be2ae435b88ae5ffe5453616c74795468654d6173636f74','SALTY']
+    
 
     token_unit = token_list[0]
     token = token_list[1]
