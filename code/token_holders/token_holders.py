@@ -14,7 +14,7 @@ You need to feed the token "encoded name" (Cexplorer.io)
 @author: kostas_panagias (https://x.com/kostas_panagias)
 
 Creation Date: 2024.09.10
-Last Update: 2024.09.13
+Last Update: 2024.11.20
 ###############################################################
 
 """
